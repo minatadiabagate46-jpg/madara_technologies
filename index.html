@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<title>MADARA SEARCH | MADARA TECHNOLOGIES</title>
+<meta name="description" content="MADARA SEARCH, explorez le monde numérique.">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#071426;
+color:#fff;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+header{
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 35px;
+border-bottom:1px solid #172b44;
+}
+
+.brand{
+font-size:19px;
+font-weight:800;
+letter-spacing:1px;
+color:#fff;
+text-decoration:none;
+}
+
+.brand span{color:#299cff}
+
+nav{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+nav a{
+color:#c6d3e2;
+text-decoration:none;
+font-size:14px;
+}
+
+nav a:hover{color:#46adff}
+
+.mail{
+background:#1685e9;
+padding:11px 20px;
+border-radius:25px;
+color:white!important;
+}
+
+main{
+flex:1;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:55px 20px 100px;
+}
+
+.logo{
+font-size:clamp(48px,9vw,76px);
+font-weight:800;
+letter-spacing:-4px;
+color:#e9f2ff;
+text-shadow:0 0 30px #1676ca55;
+margin-bottom:12px;
+}
+
+.logo span{color:#299cff}
+
+.slogan{
+color:#829ab5;
+font-size:14px;
+letter-spacing:2px;
+margin-bottom:38px;
+}
+
+.search{
+width:min(100%,620px);
+height:58px;
+display:flex;
+align-items:center;
+gap:12px;
+padding:0 20px;
+background:#101f33;
+border:1px solid #263e59;
+border-radius:35px;
+transition:.2s;
+}
+
+.search:hover,.search:focus-within{
+border-color:#299cff;
+box-shadow:0 0 18px #1685e933;
+}
+
+.search-icon{
+font-size:22px;
+color:#75baff;
+}
+
+.search input{
+flex:1;
+min-width:0;
+background:transparent;
+border:none;
+outline:none;
+color:white;
+font-size:16px;
+}
+
+.search input::placeholder{color:#8498ae}
+
+.search button{
+background:transparent;
+border:none;
+color:#829ab5;
+font-size:22px;
+cursor:pointer;
+}
+
+.actions{
+display:flex;
+gap:14px;
+margin-top:27px;
+}
+
+.actions button{
+background:#112944;
+border:1px solid #24486c;
+color:#e5f1ff;
+padding:13px 21px;
+border-radius:8px;
+font-size:14px;
+cursor:pointer;
+}
+
+.actions button:hover{
+background:#173d65;
+border-color:#299cff;
+}
+
+#status{
+color:#829ab5;
+font-size:13px;
+margin-top:25px;
+text-align:center;
+}
+
+.services{
+display:flex;
+gap:35px;
+margin-top:55px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.service{
+text-decoration:none;
+color:#b9cce0;
+font-size:13px;
+text-align:center;
+}
+
+.service-icon{
+width:50px;
+height:50px;
+background:#12243a;
+border:1px solid #263e59;
+border-radius:50%;
+display:grid;
+place-items:center;
+font-size:21px;
+margin:0 auto 10px;
+}
+
+.service:hover{color:#46adff}
+
+footer{
+background:#0b1a2c;
+border-top:1px solid #172b44;
+color:#8195ac;
+font-size:13px;
+}
+
+.footer-top{
+padding:17px 30px;
+border-bottom:1px solid #172b44;
+}
+
+.footer-bottom{
+display:flex;
+justify-content:space-between;
+padding:18px 30px;
+flex-wrap:wrap;
+gap:15px;
+}
+
+footer a{
+color:#9db2ca;
+text-decoration:none;
+margin-right:20px;
+}
+
+@media(max-width:600px){
+header{padding:0 16px}
+.brand{font-size:15px}
+nav{gap:12px}
+nav a{font-size:12px}
+main{padding-top:65px}
+.logo{letter-spacing:-3px}
+.search{height:52px}
+.footer-bottom{justify-content:center}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="#" class="brand">
+MADARA <span>TECHNOLOGIES</span>
+</a>
+
+<nav>
+<a href="#services">Services</a>
+<a href="mailto:contact@madara.com" class="mail">MADARA MAIL</a>
+</nav>
+</header>
+
+<main>
+
+<div class="logo">MADARA<span>.</span></div>
+
+<p class="slogan">EXPLOREZ LE MONDE AUTREMENT</p>
+
+<form class="search" id="searchForm">
+<span class="search-icon">⌕</span>
+
+<input
+type="search"
+id="searchInput"
+placeholder="Rechercher sur le Web..."
+autocomplete="off"
+aria-label="Rechercher sur le Web">
+
+<button type="button" id="clearButton">×</button>
+</form>
+
+<div class="actions">
+<button type="submit" form="searchForm">
+Recherche MADARA
+</button>
+<button type="button" id="luckyButton">
+J'ai de la chance
+</button>
+</div>
+
+<p id="status" aria-live="polite">
+MADARA SEARCH — Votre monde, notre technologie.
+</p>
+
+<div class="services" id="services">
+
+<a href="mailto:contact@madara.com" class="service">
+<div class="service-icon">✉</div>
+MADARA MAIL
+</a>
+
+<a href="#services" class="service">
+<div class="service-icon">☁</div>
+MADARA CLOUD
+</a>
+
+<a href="#services" class="service">
+<div class="service-icon">🌐</div>
+Nos services
+</a>
+
+</div>
+</main>
+
+<footer>
+<div class="footer-top">
+MADARA TECHNOLOGIES — Côte d'Ivoire • Monde entier
+</div>
+
+<div class="footer-bottom">
+<div>
+<a href="#services">À propos</a>
+<a href="#services">Nos services</a>
+</div>
+<div>
+<a href="mailto:contact@madara.com">Contact</a>
+<a href="#services">Confidentialité</a>
+</div>
+</div>
+</footer>
+
+<script>
+const input=document.getElementById("searchInput");
+const status=document.getElementById("status");
+
+function search(){
+const query=input.value.trim();
+
+if(!query){
+status.textContent="Veuillez saisir votre recherche.";
+input.focus();
+return;
+}
+
+status.textContent=
+"MADARA SEARCH : le moteur de recherche est en développement. Recherche : "+query;
+}
+
+document.getElementById("searchForm").addEventListener("submit",function(e){
+e.preventDefault();
+search();
+});
+
+document.getElementById("clearButton").addEventListener("click",function(){
+input.value="";
+status.textContent="MADARA SEARCH — Votre monde, notre technologie.";
+input.focus();
+});
+
+document.getElementById("luckyButton").addEventListener("click",search);
+</script>
+
+</body>
+</html>
