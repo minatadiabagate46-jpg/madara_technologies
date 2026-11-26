@@ -5,34 +5,32 @@ exports.handler = async (event) => {
   if (!query) {
     return {
       statusCode: 400,
-      body: JSON.stringify({
-        error: "Écris quelque chose à rechercher."
-      })
+      body: JSON.stringify({ error: "Recherche vide." })
     };
   }
 
   try {
-    const params = new URLSearchParams({
-      action: "query",
-      list: "search",
-      srsearch: query,
-      srlimit: "10",
-      srprop: "snippet",
-      format: "json"
-    });
+    const url = "https://fr.wikipedia.org/w/api.php?" +
+      new URLSearchParams({
+        action: "query",
+        list: "search",
+        srsearch: query,
+        srlimit: "10",
+        format: "json",
+        origin: "*"
+      });
 
-    const response = await fetch(
-      "https://fr.wikipedia.org/w/api.php?" + params
-    );
+    const response = await fetch(url);
 
-    if (!response.ok) throw new Error("Erreur source");
+    if (!response.ok) {
+      throw new Error("WIKIPEDIA_HTTP_" + response.status);
+    }
 
     const data = await response.json();
 
     const results = (data.query?.search || []).map(item => ({
       title: item.title,
-      description: item.snippet
-        .replace(/<[^>]*>/g, ""),
+      description: item.snippet.replace(/<[^>]*>/g, ""),
       url: "https://fr.wikipedia.org/wiki/" +
         encodeURIComponent(item.title.replace(/ /g, "_"))
     }));
@@ -40,14 +38,12 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: {
-        "Content-Type": "application/json; charset=utf-8"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         success: true,
-        query,
-        total: results.length,
-        source: "Wikipédia",
-        results
+        results,
+        total: results.length
       })
     };
 
@@ -55,7 +51,8 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: "La recherche est momentanément indisponible."
+        error: "Erreur de recherche",
+        details: error.message
       })
     };
   }
